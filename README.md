@@ -20,15 +20,32 @@ Three things make them different from a prompt that describes Grit:
 
 ## Install
 
+```bash
+npx skills add MUKE-coder/grit-expert-skills -g -y
+```
+
+That installs every skill at user level, so all your projects see them. It
+works in the terminal and in the VS Code extension, and it is the one to reach
+for first.
+
+Where `/plugin` is supported, this works too and keeps the pack updatable as a
+unit:
+
 ```
 /plugin marketplace add MUKE-coder/grit-expert-skills
 /plugin install grit-expert@grit-expert-skills
 ```
 
-These are yours to type. Claude Code cannot install its own plugins, so an
-assistant asked to "install the experts" will correctly tell you it cannot and
-wait. If the skills do not appear afterwards, start a new session: a freshly
-installed plugin's skills load at startup.
+`/plugin` is **not** available in every environment, including the VS Code
+extension, which answers `/plugin isn't available in this environment`. Use the
+`npx` line there.
+
+Either way, an assistant cannot install these for you: there is no plugin CLI
+reachable from a tool call. Asked to "install the experts" it will correctly
+say so and wait, which is what the project briefs tell it to do.
+
+If the skills do not appear after installing, start a new session: skills load
+at startup.
 
 Then, in your project:
 
@@ -122,8 +139,11 @@ costing more than it returns on a given project, the report says that too.
 
 ## References
 
-`references/` holds the material the experts read on demand rather than
+`grit-references` holds the material the experts read on demand rather than
 carrying in every prompt:
+
+Installed as `grit-references`, a sibling of the skills, so each one reaches a
+file as `../grit-references/<name>.md` whichever way the pack was installed.
 
 | File | Used by |
 |---|---|

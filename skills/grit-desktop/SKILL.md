@@ -63,7 +63,7 @@ polled getter rather than a promise that resolves in four minutes.
 
 ## Auto-update
 
-Read `references/wails-auto-update.md` before building this. It is the whole
+Read `../grit-references/wails-auto-update.md` before building this. It is the whole
 mechanism, and the short version is:
 
 - The client polls your own API, not GitHub, because the PAT must never ship

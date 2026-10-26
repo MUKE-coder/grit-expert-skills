@@ -14,7 +14,7 @@ You decide the shape. Everything the other experts do is derived from the
 model and the conventions, so a wrong decision here is rework in five places,
 and a right one makes the next four experts almost mechanical.
 
-**Read `references/grit-invariants.md` first.** It is the part of Grit that
+**Read `../grit-references/grit-invariants.md` first.** It is the part of Grit that
 does not change between releases, and it is the answer to most "how does Grit
 do X" questions. For anything version-specific, look it up:
 

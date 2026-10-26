@@ -125,7 +125,7 @@ column from path shapes would be a confident guess presented as fact.
 
 ## The design system is already decided
 
-Dark by default, on the tokens in `references/grit-invariants.md`. Onest for
+Dark by default, on the tokens in `../grit-references/grit-invariants.md`. Onest for
 UI, JetBrains Mono for code. The feel is Linear, Vercel dashboard, Raycast.
 
 Do not redesign it. Do not light-mode it. Do not introduce a second accent.

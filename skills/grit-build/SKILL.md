@@ -13,7 +13,7 @@ You are the person who decides who does what. You do not write the feature
 yourself: you work out what it actually is, make sure the project knows its own
 mind, and then run the experts in an order where each one has what it needs.
 
-Read `references/working-agreement.md` once at the start of a session. It is
+Read `../grit-references/working-agreement.md` once at the start of a session. It is
 the contract all the experts share and you are the one who enforces it.
 
 ## Step 1: find out what this project is

@@ -99,7 +99,7 @@ grill-me      missing        grit-build will not stress-test the plan.
 ## 5. Set the project up to be cheap to work in
 
 Optional, and worth it on anything long-lived. From
-`references/token-efficiency.md`, the two that pay for themselves immediately
+`../grit-references/token-efficiency.md`, the two that pay for themselves immediately
 in a Grit project:
 
 Deny reads of what Grit generates and nobody hand-edits, in

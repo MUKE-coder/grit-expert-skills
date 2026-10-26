@@ -108,7 +108,7 @@ accept is the scanner's package loader, not your repository.
 
 ## Shipping the desktop app
 
-`references/wails-auto-update.md` in full if the project has a desktop target.
+`../grit-references/wails-auto-update.md` in full if the project has a desktop target.
 The release is a tag, built assets and a GitHub release, and the client finds
 it through your own API rather than GitHub directly, because the PAT must never
 ship in a binary.
@@ -125,7 +125,7 @@ If `gh release create` fails after the tag pushed, you have an orphan tag.
 
 They are store submissions, not deploys, and they are a different discipline
 with a review queue in it. `grit-mobile` owns that, and
-`references/store-rejections.md` is the checklist. Do not treat a store
+`../grit-references/store-rejections.md` is the checklist. Do not treat a store
 submission as the last five minutes of a deploy: the review can take weeks if
 a restricted permission is involved.
 

@@ -16,11 +16,11 @@ marketing pages and anything in a mobile app that is not chrome.
 
 Three references, and which one you need depends on the surface:
 
-- `references/anti-slop-audit.md` is **the standard**, for every surface. Read
+- `../grit-references/anti-slop-audit.md` is **the standard**, for every surface. Read
   it before you write a screen, not after, because almost every finding in it
   is cheaper to avoid than to fix.
-- `references/motion.md` for web animation.
-- `references/flat-light-mobile.md` if the surface is the Expo app, where the
+- `../grit-references/motion.md` for web animation.
+- `../grit-references/flat-light-mobile.md` if the surface is the Expo app, where the
   style is already fully specified and your job is to apply it, not to invent.
 
 ## Research before you design
@@ -117,7 +117,7 @@ in an admin and slop on a landing page. Classify the surface first.
 
 ## Motion
 
-`references/motion.md` for the API. The rules that matter:
+`../grit-references/motion.md` for the API. The rules that matter:
 
 - Animate `transform` and `opacity`. Never `width`, `height`, `top`, `left`.
 - **Never `transition-all`.** Name the properties.

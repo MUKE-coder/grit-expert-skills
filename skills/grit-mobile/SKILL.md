@@ -13,11 +13,11 @@ An Expo app against the same API and the same shared types. Two references
 carry most of the detail and you should read the relevant one before writing
 screens:
 
-- `references/flat-light-mobile.md` is the complete style: tokens, primitives,
+- `../grit-references/flat-light-mobile.md` is the complete style: tokens, primitives,
   layout, haptics, motion, copy rules, the anti-rules, and the platform traps.
   **Every value comes from `lib/tokens.ts`.** Add a token before using a new
   value.
-- `references/store-rejections.md` is the pre-submission checklist. Read it
+- `../grit-references/store-rejections.md` is the pre-submission checklist. Read it
   before the first submission, not after the first rejection.
 
 ```bash
@@ -92,7 +92,7 @@ error unless there is an error boundary plus
 
 ## Store submission
 
-`references/store-rejections.md` in full. The things that cause most
+`../grit-references/store-rejections.md` in full. The things that cause most
 rejections are not code:
 
 **The demo account.** Non-expiring, pre-populated with realistic data, works
