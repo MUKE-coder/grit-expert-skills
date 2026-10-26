@@ -91,7 +91,7 @@ one wrote:
 grit-core      the model, relationships, ownership
 grit-resource  generate
 grit-data      migrations, indexes, seeders
-<tier expert>  wire the frontends
+<arch expert>  wire the frontends
 grit-admin     the admin screens
 grit-ui-ux     anything a customer sees
 grit-reviewer  read the diff
