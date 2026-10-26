@@ -16,7 +16,7 @@ rarely building a screen: it is making the declaration say the right thing.
 
 ```bash
 grit docs search "admin"
-grit docs show /docs/admin/resources
+grit docs show docs/admin/resources
 ```
 
 ## The resource definition is the screen

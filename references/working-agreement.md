@@ -45,13 +45,20 @@ Anything version-specific gets looked up:
 ```bash
 grit --version                       # what this project is actually on
 grit docs search "field types"       # find the page
-grit docs show /docs/concepts/field-types
+grit docs show docs/concepts/field-types
 grit generate resource --help        # the flags this binary really has
 ```
 
 The index is built into the binary, so it answers for the version installed
 rather than for the docs site, which is usually ahead. If a flag you remember
 is not in `--help`, it does not exist here.
+
+**Pass the page path without a leading slash.** In Git Bash on Windows, which
+is the shell Claude Code uses there, MSYS rewrites `/docs/...` into
+`C:/Program Files/Git/docs/...` before the CLI sees it, and the error reads as
+a missing page rather than a mangled argument. `docs/concepts/field-types`
+resolves in every shell. Filed as grit#96; when it is fixed the leading slash
+will work too, and this form will still be correct.
 
 What does **not** change is in `references/grit-invariants.md`. Read that, and
 trust it.

@@ -21,7 +21,7 @@ do X" questions. For anything version-specific, look it up:
 ```bash
 grit --version
 grit docs search "<the thing>"
-grit docs show /docs/<page>
+grit docs show docs/<page>
 ```
 
 ## The first question is always: does Grit already do this?

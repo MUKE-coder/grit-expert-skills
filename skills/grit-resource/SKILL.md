@@ -23,7 +23,7 @@ migrations for one column.
 Grit ships several releases a week and the field types move. Every time:
 
 ```bash
-grit docs show /docs/concepts/field-types
+grit docs show docs/concepts/field-types
 grit generate resource --help
 ```
 
