@@ -1,6 +1,6 @@
 # Grit expert skills
 
-Seventeen Claude skills that build a product on the
+Eighteen Claude skills that build a product on the
 [Grit framework](https://gritframework.dev): a router that reads your project
 and assigns the work, one expert per architecture, and specialists for
 resources, the admin panel, design, data, security, performance, deployment
@@ -75,6 +75,7 @@ Or call an expert directly when you know who you want:
 | `grit-reviewer` | Reads the diff for the bugs this framework actually produces |
 | `grit-feedback` | Files Grit issues and checks whether the fix shipped |
 | `grit-setup` | Installs and checks what the others depend on |
+| `grit-report` | Reads the run log and says whether the experts are paying for themselves |
 
 ## How they work together
 
@@ -95,6 +96,24 @@ grit-admin     the admin screens
 grit-ui-ux     anything a customer sees
 grit-reviewer  read the diff
 ```
+
+## Measuring whether this is working
+
+The router appends one row per expert run to `.grit/run-log.md`: which expert,
+the task, how many files it changed, **the verification command it actually
+ran**, how many questions it asked, how many issues it filed, and whether the
+work turned out to be its own.
+
+`/grit-report` reads that, plus `.grit/feedback.md` and `phases.md`, and
+reports six things: route accuracy, verification rate, question load and
+repeat questions, framework friction, rework, and throughput. Token cost is
+not in the project, so it asks you for `/usage` and `/context` rather than
+estimating.
+
+It is deliberately not a score. A single number invites gaming, and the
+behaviour that games it (never asking, never filing) is exactly the behaviour
+that makes the experts worse. And if the numbers say the orchestration is
+costing more than it returns on a given project, the report says that too.
 
 ## References
 

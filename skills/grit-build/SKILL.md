@@ -136,6 +136,45 @@ than routing around it.
 Pass each expert the task, the relevant part of the profile, and what the
 previous expert produced. They cannot see each other's work.
 
+## Step 5b: log each run, in one line
+
+After every expert returns, append a row to `.grit/run-log.md`, creating the
+file with the header if it is not there. This is the only record of what
+actually happened: you are the only thing that sees every invocation, so if you
+skip it nobody can tell later whether this way of working is paying for
+itself.
+
+```markdown
+# Run log
+
+One row per expert run, written by grit-build. Read by grit-report.
+
+| When | Phase | Expert | Task | Files | Verified with | Asked | Filed | Outcome |
+|---|---|---|---|---|---|---|---|---|
+| 2026-10-26 14:02 | 2 | grit-core | model the Deal pipeline | 0 | n/a | 2 | 0 | done |
+| 2026-10-26 14:19 | 2 | grit-resource | generate Deal | 11 | go build, go test | 0 | 1 | done |
+| 2026-10-26 14:31 | 2 | grit-admin | pipeline board | 3 | pnpm build | 1 | 0 | done |
+```
+
+What each column means, because a column people fill in differently measures
+nothing:
+
+- **Files** is the count of files changed, not their names. The git diff has
+  the names.
+- **Verified with** is the command that was actually run. `n/a` when the run
+  changed no code. **Never write a command that was not run.** This column is
+  the one the report leans on hardest, and a hopeful entry in it makes the
+  whole log worthless.
+- **Asked** is how many questions the expert put to the user.
+- **Filed** is how many Grit issues it opened.
+- **Outcome** is `done`, `blocked`, or `handed back` when the work was not
+  that expert's and you had to route again. Record `handed back` honestly:
+  it is the number that tells you your own routing is wrong, and hiding it
+  only means you keep making the same mistake.
+
+One row per run, appended, never rewritten. If an expert runs twice in a phase
+that is two rows, and that is a signal worth being able to see.
+
 ## Step 6: close out
 
 - `cd apps/api && go build ./... && go test ./...`
@@ -145,6 +184,11 @@ previous expert produced. They cannot see each other's work.
   issue numbers filed along the way
 
 Never report a build as done on the strength of having written it.
+
+At the end of a phase, run `grit-report`. It reads the run log, the feedback
+file and `phases.md` and says whether this way of working is actually paying
+for itself on this project. If it is not, that is worth knowing in phase two
+rather than phase six.
 
 ## The profile template
 
