@@ -75,7 +75,7 @@ decides the route:
 | "Add contacts and companies" | A resource. Model first, everything follows |
 | "Make the dashboard show pipeline value" | A read model plus an admin widget |
 | "Log WhatsApp messages against a contact" | An integration plus a resource |
-| "Reps need to work offline" | An architecture decision, not a feature |
+| "Reps need to work offline" | An architecture decision, not a feature. `grit-offline` |
 | "Make it look less generic" | A design pass, and a standard to hold it to |
 | "It is slow" | A measurement, before any change |
 | "Ship it" | Deployment, and store review if there is a mobile app |
@@ -113,6 +113,10 @@ what an earlier one wrote.
 5. Then resources, as above.
 
 **A design pass**: `grit-ui-ux`, then `grit-reviewer`.
+
+**Offline**: `grit-offline` **before** the surface expert, not after. It is a
+data design, and `grit-desktop` or `grit-mobile` build against the decisions
+it makes. Doing it the other way round means building screens twice.
 
 **A performance complaint**: `grit-perf` alone, first. It measures before
 anything is changed, and the measurement usually renames the task.

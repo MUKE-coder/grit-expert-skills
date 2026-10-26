@@ -55,6 +55,9 @@ than at the duplication.
 
 ## Offline for field work
 
+**`grit-offline` owns the design.** Identifiers, the outbox, replay and the
+conflict rules are decided there and this app is built against them.
+
 If the product has reps in the field, offline is the requirement and not a
 nice-to-have. The architecture is the same as the desktop's: a local mirror
 and a queue of writes to replay, with the server authoritative.

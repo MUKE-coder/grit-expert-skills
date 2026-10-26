@@ -1,6 +1,6 @@
 # Grit expert skills
 
-Eighteen Claude skills that build a product on the
+Nineteen Claude skills that build a product on the
 [Grit framework](https://gritframework.dev): a router that reads your project
 and assigns the work, one expert per architecture, and specialists for
 resources, the admin panel, design, data, security, performance, deployment
@@ -94,6 +94,7 @@ Or call an expert directly when you know who you want:
 | `grit-single` | One app that is the project root, admin as a section |
 | `grit-desktop` | Wails, offline mirror and sync outbox, packaging, auto-update |
 | `grit-mobile` | Expo, offline field use, uploads, and store review |
+| `grit-offline` | The offline engine: mirror, outbox, sync, identifiers, what never queues |
 | `grit-admin` | Resource definitions, tables, forms, widgets, the system pages |
 | `grit-ui-ux` | Customer-facing design, research first, held to the anti-slop standard |
 | `grit-security` | Auth, authorization, Sentinel, Scout, API keys, the route table |

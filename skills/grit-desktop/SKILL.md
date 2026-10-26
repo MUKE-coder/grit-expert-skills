@@ -21,6 +21,11 @@ ls apps/desktop
 
 ## Offline is a data design, not a feature flag
 
+**`grit-offline` owns this.** Get the mirror, the outbox, identifiers and the
+conflict rules decided there first, then build the app against them. The
+summary below is what you need to know to ask the right questions, not a
+substitute for that expert.
+
 A desktop app that works offline has a local SQLite mirror and a **sync
 outbox**: every local write is also appended as an intent to be replayed
 against the API when there is a connection. That is the whole architecture,
