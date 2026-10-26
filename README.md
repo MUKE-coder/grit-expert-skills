@@ -21,12 +21,21 @@ Three things make them different from a prompt that describes Grit:
 ## Install
 
 ```bash
+grit skills install --all
+```
+
+An ordinary command, so an assistant can run it for you. It installs every
+skill at user level, so all your projects see them, plus the five external
+skills the experts use. `grit skills status` says what is there. Needs Grit
+v3.411.7 or later.
+
+Without Grit, or to install just the pack:
+
+```bash
 npx skills add MUKE-coder/grit-expert-skills -g -y
 ```
 
-That installs every skill at user level, so all your projects see them. It
-works in the terminal and in the VS Code extension, and it is the one to reach
-for first.
+Both work in the terminal and in the VS Code extension.
 
 Where `/plugin` is supported, this works too and keeps the pack updatable as a
 unit:
@@ -39,10 +48,6 @@ unit:
 `/plugin` is **not** available in every environment, including the VS Code
 extension, which answers `/plugin isn't available in this environment`. Use the
 `npx` line there.
-
-Either way, an assistant cannot install these for you: there is no plugin CLI
-reachable from a tool call. Asked to "install the experts" it will correctly
-say so and wait, which is what the project briefs tell it to do.
 
 If the skills do not appear after installing, start a new session: skills load
 at startup.
