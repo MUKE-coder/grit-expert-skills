@@ -25,6 +25,11 @@ Three things make them different from a prompt that describes Grit:
 /plugin install grit-expert@grit-expert-skills
 ```
 
+These are yours to type. Claude Code cannot install its own plugins, so an
+assistant asked to "install the experts" will correctly tell you it cannot and
+wait. If the skills do not appear afterwards, start a new session: a freshly
+installed plugin's skills load at startup.
+
 Then, in your project:
 
 ```
