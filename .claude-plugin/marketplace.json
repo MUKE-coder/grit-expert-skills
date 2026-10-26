@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "grit-expert-skills",
+  "description": "The Grit framework expert pack for Claude",
+  "owner": {
+    "name": "MUKE JOHNBAPTIST",
+    "url": "https://jb.desishub.com"
+  },
+  "plugins": [
+    {
+      "name": "grit-expert",
+      "description": "Seventeen skills that build a product on the Grit framework: a router that assigns the work, one expert per tier, and specialists for resources, admin, design, data, security, performance, deployment and review.",
+      "source": "./",
+      "category": "development",
+      "homepage": "https://github.com/MUKE-coder/grit-expert-skills"
+    }
+  ]
+}

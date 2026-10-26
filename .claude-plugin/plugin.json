@@ -1,0 +1,24 @@
+{
+  "name": "grit-expert",
+  "description": "Seventeen Claude skills that build a product on the Grit framework: a router that reads your project and assigns the work, one expert per tier (triple, double, single, desktop, mobile), and specialists for resources, the admin panel, design, data, security, performance, deployment and review. They read the docs out of your installed grit binary rather than from memory, interview you once and remember the answers, and file what Grit got wrong as an issue while they work.",
+  "version": "0.1.0",
+  "author": {
+    "name": "MUKE JOHNBAPTIST",
+    "url": "https://jb.desishub.com"
+  },
+  "homepage": "https://github.com/MUKE-coder/grit-expert-skills",
+  "repository": "https://github.com/MUKE-coder/grit-expert-skills",
+  "license": "MIT",
+  "keywords": [
+    "grit",
+    "go",
+    "gin",
+    "gorm",
+    "nextjs",
+    "expo",
+    "wails",
+    "fullstack",
+    "scaffolding",
+    "admin-panel"
+  ]
+}
