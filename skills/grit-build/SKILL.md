@@ -194,6 +194,17 @@ file and `phases.md` and says whether this way of working is actually paying
 for itself on this project. If it is not, that is worth knowing in phase two
 rather than phase six.
 
+Then run `grit-advocate`. It reads the same record and asks a different
+question: was any of this worth telling people about. Most phases produce
+nothing, and it says so. When something clears its bar it files a story with
+the evidence and a draft, and the moment is captured while the numbers are
+still true rather than reconstructed from memory in three weeks.
+
+One thing it needs from you during the build: when something is about to be
+lost, it will say so in a line. A recording of a failure you are about to fix,
+a screenshot of a broken screen, a timing that will not reproduce once the
+cache is warm. Capture it then or it is gone.
+
 ## The profile template
 
 ```markdown

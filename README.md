@@ -1,10 +1,11 @@
 # Grit expert skills
 
-Twenty Claude skills that build a product on the
+Twenty-one Claude skills that build a product on the
 [Grit framework](https://gritframework.dev): a router that reads your project
 and assigns the work, one expert per architecture, and specialists for
 resources, the admin panel, design, data, security, performance, deployment
-and review, plus one that reads what the work actually cost in tokens.
+and review, plus one that reads what the work actually cost in tokens and one
+that writes up what was worth telling people about.
 
 Three things make them different from a prompt that describes Grit:
 
@@ -105,6 +106,7 @@ Or call an expert directly when you know who you want:
 | `grit-setup` | Installs and checks what the others depend on |
 | `grit-report` | Reads the run log and says whether the experts are paying for themselves |
 | `grit-tokens` | What the project has spent, where it went, and who the big spender is |
+| `grit-advocate` | Files what is worth sharing as a story, with the draft and the channel |
 
 ## How they work together
 
@@ -152,6 +154,26 @@ python3 .claude/skills/grit-tokens/scripts/token_report.py --project . \
 Run it once before setting any alert: the defaults it ships with are small
 enough to fire immediately on a real project, and the report tells you what
 your actual numbers are so you can set thresholds that mean something.
+
+## Telling people about it
+
+`/grit-advocate` watches the build and files what is worth sharing as an issue
+in [grit-stories](https://github.com/MUKE-coder/grit-stories), one story each,
+with the evidence, the channel it suits and a draft you can post as it stands.
+
+It has a bar, and most of a build does not clear it: a number that moved with
+both measurements, a surprise worth the hour it cost, or a technique another
+developer can use without Grit at all. Anything else is an announcement, and
+announcements belong in the changelog.
+
+Two rules keep it honest. Every number in a draft traces to the run log, the
+git history, the token report or the changelog, and a sentence that cannot be
+sourced does not get written. And no client name, no customer data and nothing
+from a private repository ever reaches a draft, whatever it would do for the
+story.
+
+It never posts. You read the issue, post it or bin it, and close it with the
+link. That loop is how the next batch gets better.
 
 It is deliberately not a score. A single number invites gaming, and the
 behaviour that games it (never asking, never filing) is exactly the behaviour
