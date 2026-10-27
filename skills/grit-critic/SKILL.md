@@ -83,6 +83,8 @@ EXPLAIN ANALYZE <the query>;
 ```
 
 Say which index is missing and on what, not "consider adding indexes".
+`grit index` prints the statements the lists need, including the `id` that has
+to come last, so the finding can carry the exact SQL rather than advice.
 
 **3. Pagination, everywhere a list exists.** Including the ones that feed a
 dropdown, which are the ones that ship unpaginated. Ask what happens at ten
@@ -126,6 +128,11 @@ a finding regardless of how it looks.
 **The look**, against `../grit-references/craft-standard.md` and the anti-slop
 audit. `grit-ui-ux` owns this: if the surface is customer facing and the finish
 is the problem, say so and hand it over rather than giving design notes.
+
+**A table or form built by hand** where the admin already has one. That is a
+finding, not a preference: two tables drift, and the second one is always the
+one missing the empty state and the keyboard handling. `grit port table --to
+<app>` is the remedy and it is worth naming in the report.
 
 ## The tests
 

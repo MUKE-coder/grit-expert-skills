@@ -85,6 +85,32 @@ Composite order matters: the column you filter on exactly comes first, the
 range or sort column second. An index on `(created_at, org_id)` does nothing
 for `WHERE org_id = ? ORDER BY created_at DESC`; `(org_id, created_at)` does.
 
+**And `id` goes last.** Every generated list orders by the sort column and then
+by `id`, because without that second column rows sharing a value have no
+defined order and pages repeat and skip rows. An index that stops at the sort
+column cannot serve the whole `ORDER BY`, so it costs writes and buys nothing.
+
+You do not have to work these out:
+
+```bash
+grit index                      # the default sort of every list
+grit index --all-sortable       # every sortable column
+grit index --only deal=title    # pick, when you have a measurement
+grit index --write db/indexes.sql
+```
+
+It reads the scope from the model, so a tenant-owned resource gets
+`(org_id, col, id)` and an `--owned-by` one gets `(user_id, col, id)`. It
+writes SQL and creates nothing: the statements are `CREATE INDEX CONCURRENTLY`,
+which does not lock the table and therefore cannot run inside a transaction, so
+apply the file with psql rather than through a runner that wraps everything in
+`BEGIN`.
+
+Only the default sort by default, deliberately. That one is used by every list
+request where nobody has clicked a column, so it pays for itself on every page
+load. An index per sortable column is write amplification on a table that is
+mostly written, so take the others when a measurement says to.
+
 Check before guessing:
 
 ```sql

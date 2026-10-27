@@ -82,16 +82,27 @@ grit doctor
 
 ## apps/web is not apps/admin
 
-They have **different palettes**, and a Tailwind utility that does not exist
-renders nothing and reports nothing. The web app has `bg-bg-secondary`,
-`text-text-secondary`, `text-accent`. The admin has `muted`, `card`,
-`primary`. Copying a component from one to the other produces an invisible
-element and a confusing half hour.
+**They share a palette.** Both stylesheets are written from one function, so
+the token vocabulary is identical: sixteen `--color-*` names in each, the same
+sixteen. `bg-bg-secondary`, `text-text-secondary`, `text-accent`,
+`text-foreground`, `border-border` and the rest work in both.
 
-They also have different jobs. The admin is a dense operator console and it
-already has a design system, so leave it alone unless you are adding to it.
+This used to be the opposite, and the old warning is worth knowing about
+because you may meet it in an older project: before v3.411.21 the two sheets
+were maintained separately and a component moved between them could reference
+a utility the other app did not define, which in Tailwind renders nothing and
+reports nothing. If a ported component comes out invisible, that is the first
+thing to check, with `--color-<name>:` in the target's `globals.css`.
+
+Because the vocabulary is shared, **copying a component across is a supported
+move**: `grit port table --to apps/web` takes the admin's data table and
+everything it imports. See `grit-admin` for what is worth taking.
+
+They still have **different jobs**. The admin is a dense operator console and
+it already has a design system, so leave it alone unless you are adding to it.
 The web app is the product, and it should look like the product rather than
-like an admin panel with the sidebar removed.
+like an admin panel with the sidebar removed. A ported table is a starting
+point for a customer-facing screen, not the finished thing.
 
 ## The shared package is the contract
 

@@ -37,6 +37,29 @@ So the order of preference, strongest first:
    at all. An Operations page that stitches four queries together is a real
    page. A list of invoices is not.
 
+## Taking the admin's components elsewhere
+
+The table, the form builder and the widgets are the most finished interface
+work in a Grit project, and a customer portal usually wants some of it.
+Rebuilding them by hand is how a project ends up with two tables that behave
+differently.
+
+```bash
+grit port list                  # table, table-full, form, widgets, ui
+grit port table --to apps/web   # and everything it imports
+```
+
+The files are copied, not shared, and from then on they belong to the app they
+landed in. That is deliberate: these components get edited per project, which
+is the premise of the admin being yours rather than a dependency.
+
+Two things to tell whoever asked. The copy is a starting point for a
+customer-facing screen rather than the finished thing, because the admin is a
+dense operator console and the product should not look like one. And a package
+the copied files import that the target does not declare is listed by the
+command: a workspace hoists those, so the app type-checks today and fails when
+it is built on its own.
+
 ## The table
 
 Sorting, filtering, selection and pagination are built in. What you decide:

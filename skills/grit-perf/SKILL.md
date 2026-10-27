@@ -55,6 +55,30 @@ Preload exactly what the response serialises. A preload nobody reads is a join
 nobody needed, and over-preloading is the second most common cause of a slow
 list endpoint after under-preloading.
 
+## The index that is almost always missing
+
+A list endpoint that is slow with no N+1 is usually sorting the whole table.
+Every generated list is `WHERE <scope> ORDER BY <column>, id`, and until
+somebody creates an index in that shape the database sorts on disk for every
+page. Measured on 500,000 rows: 2.3 seconds for one page, 16.6 seconds at page
+20,000.
+
+```bash
+grit index                 # what the lists need, as SQL
+grit index --all-sortable  # when people really do sort by other columns
+```
+
+Confirm before and after with the plan rather than with a stopwatch:
+
+```sql
+EXPLAIN ANALYZE SELECT ... ORDER BY created_at, id LIMIT 25 OFFSET 0;
+```
+
+`Sort Method: external merge  Disk: ...kB` is the finding. An `Index Scan`
+using the index you just made is the fix. If the plan still says sequential
+scan after creating one, the index does not match the query and that is worth
+reporting rather than adding another.
+
 ## The rest of the usual list
 
 In rough order of how often they are the answer:
