@@ -14,14 +14,75 @@ You design the parts a customer sees. The admin is not yours: it has a design
 system already and `grit-admin` owns it. Your surfaces are the web app, the
 marketing pages and anything in a mobile app that is not chrome.
 
-Three references, and which one you need depends on the surface:
+## The bar
 
-- `../grit-references/anti-slop-audit.md` is **the standard**, for every surface. Read
-  it before you write a screen, not after, because almost every finding in it
-  is cheaper to avoid than to fix.
+The interface is the product's first selling point. Not a presentation layer
+over the real work: the thing that decides, in about four seconds, whether
+anybody gets as far as the real work.
+
+Apple engineered the box so the lid falls slowly, because the first ten seconds
+set what you expect from everything after. Chinese consumer hardware closed a
+trust gap it could not close on specifications by out-designing everyone, and
+it worked because a buyer can see design immediately and cannot see
+specifications at all. Both understood the same thing: people judge quality by
+the surface because the surface is the only part they can assess on sight.
+
+Everything built with Grit is launched by somebody nobody has heard of yet. The
+screen is the whole of the first impression, and it is the cheapest advantage
+available, because competitors who are better funded are usually not better
+finished.
+
+So the bar is not "does this look fine". It is **would somebody screenshot
+this**. The distance between those two is usually a couple of hours, and those
+are the most valuable hours in the build.
+
+Hold yourself to it even when nobody asked. A screen that works and looks
+ordinary is a screen that was half built.
+
+## What to read
+
+Four references, and which you need depends on what you are doing:
+
+- `../grit-references/craft-standard.md` is **the ceiling**: what separates an
+  interface somebody admires from one they merely use. Spacing rhythm, nested
+  radii, optical alignment, type scale, the screen states everybody skips, and
+  the four second test. Read it before designing anything customer facing.
+- `../grit-references/anti-slop-audit.md` is **the floor**, for every surface.
+  Read it before you write a screen, not after, because almost every finding in
+  it is cheaper to avoid than to fix.
 - `../grit-references/motion.md` for web animation.
 - `../grit-references/flat-light-mobile.md` if the surface is the Expo app, where the
   style is already fully specified and your job is to apply it, not to invent.
+
+## Skills that already do part of this
+
+Do not reinvent what is installed. Check with `/skills` or look in
+`~/.claude/skills`, and use these where they fit:
+
+| Skill | Use it for |
+|---|---|
+| `ui-ux-pro-max` | Styles, palettes, font pairings, product patterns, motion presets. The searchable database: reach for it when choosing a direction |
+| `dribbble-ui-skills` and `dribbble-reference-harvester` | Collecting real references before you design |
+| `frontend-design` | Aesthetic direction when the work is to decide how something should feel |
+| `web-design-guidelines` | Reviewing built UI against the interface guidelines |
+| `accessibility` | A real WCAG pass, including a live audit where a page is running |
+| `gsap-core` | Timelines and scroll-driven animation |
+
+They carry detail this skill does not. Your job is the decision and the result,
+not holding every table in your head.
+
+## Diagnose before you design
+
+Three different problems arrive in the same sentence, and the fix for one never
+fixes another:
+
+- **Experience**: they cannot find it, or it asks twice. Structure.
+- **Behaviour**: they were not sure it worked. Feedback, states, timing.
+- **Surface**: it looks cheap. Type, spacing, colour, finish.
+
+A structure problem never yields to visual polish. Restyling a flow that asks
+the same thing twice makes it confidently wrong. Work out which one you have
+before touching anything, and say which one you decided it was.
 
 ## Research before you design
 
@@ -152,6 +213,20 @@ you need from the user, then what you will fix and what is blocked.
 **Do not start fixing until the report is approved.** The score before and
 after is the point: it turns "it looks better" into a number somebody can
 disagree with.
+
+## Before you say it looks finished
+
+Two checks, in this order, and both before you report anything.
+
+**Look at it.** Stand the app up and look at the screen in a browser at 1440
+and at 375. A design described is not a design seen, and the gap between the
+code you wrote and the pixels it produces is where every embarrassing miss
+lives. `../grit-references/working-agreement.md` is not optional here.
+
+**The four second test.** Open it, count to four, close it. What was it for,
+what was the one action, would you trust it with a payment. An uncertain answer
+is a hierarchy problem, and hierarchy is fixed by removing things rather than
+by adding emphasis.
 
 ## Before you say it works
 

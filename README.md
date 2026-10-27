@@ -1,6 +1,6 @@
 # Grit expert skills
 
-Twenty-one Claude skills that build a product on the
+Twenty-two Claude skills that build a product on the
 [Grit framework](https://gritframework.dev): a router that reads your project
 and assigns the work, one expert per architecture, and specialists for
 resources, the admin panel, design, data, security, performance, deployment
@@ -107,6 +107,7 @@ Or call an expert directly when you know who you want:
 | `grit-report` | Reads the run log and says whether the experts are paying for themselves |
 | `grit-tokens` | What the project has spent, where it went, and who the big spender is |
 | `grit-advocate` | Files what is worth sharing as a story, with the draft and the channel |
+| `grit-critic` | The independent review of a feature marked done: runs it, profiles it, says what to fix |
 
 ## How they work together
 

@@ -194,6 +194,13 @@ file and `phases.md` and says whether this way of working is actually paying
 for itself on this project. If it is not, that is worth knowing in phase two
 rather than phase six.
 
+Before either of those, run `grit-critic` on anything the phase marked done.
+It is the only expert here that did not build any of it, which is the whole of
+its value: everyone else is reviewing their own work. It uses the feature, reads
+the backend for the bottleneck, checks that the tests would fail if the code
+were wrong, and comes back with a list ordered by what each finding will cost.
+It does not tick the box. You do, once you have read it.
+
 Then run `grit-advocate`. It reads the same record and asks a different
 question: was any of this worth telling people about. Most phases produce
 nothing, and it says so. When something clears its bar it files a story with
