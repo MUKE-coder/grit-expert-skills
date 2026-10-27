@@ -50,17 +50,38 @@ PRICES = {
     "claude-fable-5-1": {"input": 3.0, "output": 15.0, "cache_write": 3.75, "cache_read": 0.30},
 }
 
+# Tier rates, for a model id this table does not name. Pricing has moved with
+# the tier rather than with the generation, so an older opus is priced as an
+# opus. It is a fallback and it is marked as one: a project on a model nobody
+# listed should see a number, with the reason it is approximate, rather than
+# see nothing and read it as free.
+TIERS = {
+    "opus": PRICES["claude-opus-5"],
+    "sonnet": PRICES["claude-sonnet-5-5"],
+    "haiku": PRICES["claude-haiku-5-5"],
+    "fable": PRICES["claude-fable-5-1"],
+}
+
+
 # A model id may carry a suffix, such as claude-opus-5[1m]. Price on the base.
 def price_for(model: str):
+    """The rates for a model, and whether they are exact.
+
+    Returns (rates, exact). exact is False when the id was matched on its tier
+    rather than named outright.
+    """
     if not model:
-        return None
+        return None, False
     base = model.split("[")[0]
     if base in PRICES:
-        return PRICES[base]
+        return PRICES[base], True
     for name, p in PRICES.items():
         if base.startswith(name):
-            return p
-    return None
+            return p, True
+    for tier, p in TIERS.items():
+        if tier in base:
+            return p, False
+    return None, False
 
 
 # ------------------------------------------------------------ locating it
@@ -293,7 +314,7 @@ def refresh(folder: str, state: dict) -> None:
 
 # -------------------------------------------------------------- the report
 def cost_of(b: dict, model: str) -> float:
-    p = price_for(model)
+    p, _ = price_for(model)
     if not p:
         return 0.0
     return (
@@ -306,6 +327,19 @@ def cost_of(b: dict, model: str) -> float:
 
 def total_cost(state: dict) -> float:
     return sum(cost_of(b, m) for m, b in state["by_model"].items())
+
+
+def unpriced(state: dict) -> int:
+    """Billable tokens on a model with no rate at all, named so they are not
+    read as free."""
+    return sum(billable(b) for m, b in state["by_model"].items()
+               if price_for(m)[0] is None and raw(b))
+
+
+def approximate(state: dict) -> bool:
+    """True when any cost in the total came from a tier fallback."""
+    return any(not price_for(m)[1] and price_for(m)[0] and raw(b)
+               for m, b in state["by_model"].items())
 
 
 def billable(b: dict) -> int:
@@ -366,7 +400,12 @@ def text_report(state: dict, project: str) -> str:
     out.append(f"  Thinking   {human(t['thinking']):>10}   of the output")
     cost = total_cost(state)
     if cost:
-        out.append(f"  Cost       {'$' + format(cost, ',.2f'):>10}   at the rates in this script")
+        note = "at the rates in this script"
+        if approximate(state):
+            note += ", some matched by tier"
+        out.append(f"  Cost       {'$' + format(cost, ',.2f'):>10}   {note}")
+    if unpriced(state):
+        out.append(f"  Unpriced   {human(unpriced(state)):>10}   billable, on a model with no rate here")
     out.append("")
 
     if len(state["by_model"]) > 1:
@@ -458,6 +497,11 @@ def html_report(state: dict, project: str) -> str:
     main = state["by_agent"]["main"]
     sub_share = billable(sub) / max(billable(t), 1) * 100
 
+    cost_note = "at the rates in the script"
+    if approximate(state):
+        cost_note += ", some matched by tier"
+    if unpriced(state):
+        cost_note += f"; {human(unpriced(state))} unpriced"
     generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     biggest = esc(rows[0]["name"]) if rows else "nothing yet"
 
@@ -527,7 +571,7 @@ def html_report(state: dict, project: str) -> str:
     <div class="card"><div class="k">Raw total</div><div class="v">{human(raw(t))}</div>
       <div class="n">every token counted</div></div>
     <div class="card"><div class="k">Estimated cost</div><div class="v">${cost:,.2f}</div>
-      <div class="n">at the rates in the script</div></div>
+      <div class="n">{cost_note}</div></div>
   </div>
 
   <section>
