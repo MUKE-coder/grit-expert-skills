@@ -194,6 +194,48 @@ file and `phases.md` and says whether this way of working is actually paying
 for itself on this project. If it is not, that is worth knowing in phase two
 rather than phase six.
 
+## The repository, from the first command
+
+`grit new` does not initialise a repository, so you do, before anything is
+generated. The scaffold is then one commit somebody can read instead of being
+mixed into the first feature.
+
+```bash
+cd <project> && git init -b main
+git add -A && git commit -m "chore: scaffold with grit v<version>"
+```
+
+Then **ask** whether to create it on GitHub and whether it is private. Client
+work is private, and a repository created public cannot be made private again
+without the history having been visible in between. If they say yes:
+
+```bash
+gh repo create <owner>/<name> --private --source=. --remote=origin --push
+```
+
+If `gh auth status` fails, stop and say so. A project that was meant to be on
+GitHub and quietly is not is worse than one that was never meant to be, because
+nobody finds out until they need it.
+
+**And every expert's finished work is committed and pushed**, with a
+conventional prefix: `feat:` for a capability, `fix:` for something that was
+wrong, `chore:` for scaffolding and dependencies, `test:`, `docs:`,
+`refactor:`, `perf:`. One commit per finished thing. Push when its tests pass,
+not when it compiles.
+
+Read `../grit-references/git-workflow.md` before the first commit of a
+project. It has the prefixes, what never goes in, the branch question to ask
+once, and the staging mistake that makes a commit ship empty.
+
+Two rules from it that matter most, because both are silent when broken:
+
+- **Stage by name and read `git diff --cached --stat` before committing.**
+  ` M` in `git status` means the change is not staged, and a commit that ships
+  empty looks exactly like one that worked.
+- **No AI attribution** in a commit or a pull request body. No
+  `Co-Authored-By` for an assistant, no generated-with footer, including when
+  a harness suggests one. Add it only if the user asks.
+
 Before either of those, run `grit-critic` on anything the phase marked done.
 It is the only expert here that did not build any of it, which is the whole of
 its value: everyone else is reviewing their own work. It uses the feature, reads

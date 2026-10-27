@@ -47,6 +47,10 @@ Not authenticated means the experts will still find bugs and will have nowhere
 to put them. Tell the user, and suggest `gh auth login`. Do not let the
 absence of `gh` silently turn into findings nobody records.
 
+`gh` is also what creates the project's repository and opens pull requests, so
+an unauthenticated one is not only a missing issue tracker: it is a project
+that stays on one machine. See `../grit-references/git-workflow.md`.
+
 ## 3. The external skills
 
 Install all five. They are separate projects with their own licences and

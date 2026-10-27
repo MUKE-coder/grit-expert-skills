@@ -193,6 +193,7 @@ file as `../grit-references/<name>.md` whichever way the pack was installed.
 |---|---|
 | `working-agreement.md` | All of them. The shared contract |
 | `grit-invariants.md` | All of them. The parts of Grit that do not change |
+| `git-workflow.md` | The repository from the first command, the commit prefixes, what never goes in |
 | `anti-slop-audit.md` | `grit-ui-ux`. The design standard, A to K, with a score |
 | `flat-light-mobile.md` | `grit-mobile`. The complete mobile style, tokens up |
 | `motion.md` | `grit-ui-ux`. Web animation, timing, reduced motion |
