@@ -1,10 +1,10 @@
 # Grit expert skills
 
-Nineteen Claude skills that build a product on the
+Twenty Claude skills that build a product on the
 [Grit framework](https://gritframework.dev): a router that reads your project
 and assigns the work, one expert per architecture, and specialists for
 resources, the admin panel, design, data, security, performance, deployment
-and review.
+and review, plus one that reads what the work actually cost in tokens.
 
 Three things make them different from a prompt that describes Grit:
 
@@ -104,6 +104,7 @@ Or call an expert directly when you know who you want:
 | `grit-feedback` | Files Grit issues and checks whether the fix shipped |
 | `grit-setup` | Installs and checks what the others depend on |
 | `grit-report` | Reads the run log and says whether the experts are paying for themselves |
+| `grit-tokens` | What the project has spent, where it went, and who the big spender is |
 
 ## How they work together
 
@@ -134,9 +135,23 @@ work turned out to be its own.
 
 `/grit-report` reads that, plus `.grit/feedback.md` and `phases.md`, and
 reports six things: route accuracy, verification rate, question load and
-repeat questions, framework friction, rework, and throughput. Token cost is
-not in the project, so it asks you for `/usage` and `/context` rather than
-estimating.
+repeat questions, framework friction, rework, and throughput.
+
+What it cost is a separate question, and `/grit-tokens` answers it from Claude
+Code's own transcripts rather than from an estimate: billable tokens, cache
+reads, cost at the rates in its script, and a per-tool table saying where the
+tokens went. It reads the subagents' transcripts too, which is usually a
+quarter of the total. It can report on a threshold and on every increment of
+your choosing, and write the whole breakdown as a self-contained HTML page:
+
+```bash
+python3 .claude/skills/grit-tokens/scripts/token_report.py --project . \
+  --html .grit/tokens.html
+```
+
+Run it once before setting any alert: the defaults it ships with are small
+enough to fire immediately on a real project, and the report tells you what
+your actual numbers are so you can set thresholds that mean something.
 
 It is deliberately not a score. A single number invites gaming, and the
 behaviour that games it (never asking, never filing) is exactly the behaviour
