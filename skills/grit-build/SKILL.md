@@ -138,7 +138,11 @@ what an earlier one wrote.
    piece of work. It measures that first and says so.
 2. Then the normal routing, on a project that is current.
 
-**A design pass**: `grit-ui-ux`, then `grit-reviewer`.
+**A design pass**: `grit-ui-ux` does the work, then `grit-design-review`
+measures it against DESIGN.md, then `grit-reviewer` reads the diff. The
+measurement is not optional: the landing page accumulated 36 type styles
+and 28 contrast failures one reasonable decision at a time, and every one
+of them passed a look.
 
 **Offline**: `grit-offline` **before** the surface expert, not after. It is a
 data design, and `grit-desktop` or `grit-mobile` build against the decisions
