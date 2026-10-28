@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "grit-expert",
-      "description": "Nineteen skills that build a product on the Grit framework: a router that assigns the work, one expert per architecture, and specialists for resources, admin, design, data, security, performance, deployment and review.",
+      "description": "Twenty-four skills that build a product on the Grit framework: a router that assigns the work, one expert per architecture, and specialists for resources, plugins, blueprints, admin, design, data, security, performance, deployment and review.",
       "source": "./",
       "category": "development",
       "homepage": "https://github.com/MUKE-coder/grit-expert-skills"

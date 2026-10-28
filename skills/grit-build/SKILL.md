@@ -112,6 +112,24 @@ what an earlier one wrote.
 4. `grit-security` before the first real user, not after.
 5. Then resources, as above.
 
+**Anything that sounds like a feature**
+
+1. `grit-plugins` **first**, before writing a line. Its first job is checking
+   whether Grit, a plugin or a blueprint already has this. The expensive
+   mistake in this framework is hand-building something that ships in the
+   box, and it is expensive because the hand-built version then has to be
+   maintained against every release.
+2. If it is a record after all, `grit-resource`. If it is one screen for this
+   one product, just build it: not everything needs a mechanism.
+3. If it is a capability a second project would want, `grit-plugins` writes
+   it as a plugin.
+
+**Starting something that already exists in the world**
+
+1. `grit-blueprints` before the architecture expert. If there is a blueprint
+   close to what is being built, starting from it beats starting from an
+   empty project, and it is cheaper to find that out now.
+
 **A design pass**: `grit-ui-ux`, then `grit-reviewer`.
 
 **Offline**: `grit-offline` **before** the surface expert, not after. It is a
