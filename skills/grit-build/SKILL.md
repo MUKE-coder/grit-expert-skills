@@ -130,6 +130,14 @@ what an earlier one wrote.
    close to what is being built, starting from it beats starting from an
    empty project, and it is cheaper to find that out now.
 
+**A project that has been running a while**
+
+1. `grit-adopt` **before anything else is attempted in it**. An existing
+   project is not a fresh scaffold: somebody has edited the generated files,
+   and which ones decides whether an upgrade is an afternoon or a planned
+   piece of work. It measures that first and says so.
+2. Then the normal routing, on a project that is current.
+
 **A design pass**: `grit-ui-ux`, then `grit-reviewer`.
 
 **Offline**: `grit-offline` **before** the surface expert, not after. It is a

@@ -1,6 +1,6 @@
 # Grit expert skills
 
-Twenty-four Claude skills that build a product on the
+Twenty-five Claude skills that build a product on the
 [Grit framework](https://gritframework.dev): a router that reads your project
 and assigns the work, one expert per architecture, and specialists for
 resources, the admin panel, design, data, security, performance, deployment
@@ -91,6 +91,7 @@ Or call an expert directly when you know who you want:
 | `grit-resource` | The generator: field types, flags, YAML definitions, clean removal |
 | `grit-plugins` | What plugins exist, whether a feature should be one, writing one, proposing one |
 | `grit-blueprints` | The complete applications: which to start from, working in one, proposing one |
+| `grit-adopt` | Bringing an existing project up to current Grit, and what to adopt next |
 | `grit-data` | GORM, migrations, indexes, seeders, queries, import and export |
 | `grit-triple` | API plus web plus a separate admin, in a pnpm monorepo |
 | `grit-double` | API plus one frontend, admin as a route group |
