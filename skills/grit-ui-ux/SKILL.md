@@ -62,7 +62,7 @@ Do not reinvent what is installed. Check with `/skills` or look in
 | Skill | Use it for |
 |---|---|
 | `ui-ux-pro-max` | Styles, palettes, font pairings, product patterns, motion presets. The searchable database: reach for it when choosing a direction |
-| `dribbble-ui-skills` and `dribbble-reference-harvester` | Collecting real references before you design |
+| `dribbble-ui-skills` and `dribbble-reference-harvester` | Collecting references in bulk. One source among several: see Research before you design |
 | `frontend-design` | Aesthetic direction when the work is to decide how something should feel |
 | `web-design-guidelines` | Reviewing built UI against the interface guidelines |
 | `accessibility` | A real WCAG pass, including a live audit where a page is running |
@@ -89,8 +89,7 @@ before touching anything, and say which one you decided it was.
 **Never design from memory.** What you remember is an average of everything
 you have seen, and an average is exactly what "generic" means.
 
-If `dribbble-ui-skills` or `dribbble-reference-harvester` are installed, use
-them to collect real current work for the specific pattern:
+Search for the **pattern**, not the industry:
 
 ```
 a pipeline board for a CRM
@@ -98,18 +97,51 @@ an activity timeline mixing channels
 an empty state for a list a new user has not filled
 ```
 
-Search for the **pattern**, not the industry. "CRM dashboard" returns
-Salesforce clones; "pipeline board" returns the thing you are actually
-building.
+"CRM dashboard" returns Salesforce clones. "pipeline board" returns the thing
+you are actually building.
 
-If neither is installed, say so in one line, then search the web and **cite
-what you found**. A design decision with a reference behind it can be argued
-with. One that came from nowhere cannot, and usually does not survive contact
-with the person who asked for it.
+### Where to look
+
+Use more than one, because each has a bias and designing from a single source
+is how everything you make starts to look like that source.
+
+| Source | What it is good for |
+|---|---|
+| <https://styles.refero.design/> | Real shipped product UI, by element. The closest thing to "how does a real app lay out a settings page" |
+| <https://vibrant.design/> | Colour and visual direction when a surface needs an identity rather than a layout |
+| <https://bentogrids.com/> | Bento and card layouts. The pattern most often done badly: go and see it done well before you try |
+| <https://collectui.com/designs/landing-page-ui-design-inspiration> | Landing pages, one pattern per day. Good for a marketing surface, weak for dense product UI |
+| `dribbble-ui-skills`, `dribbble-reference-harvester` | Collecting a set in bulk, when either is installed |
+
+A note on Dribbble, since it is the one everybody reaches for first: it rewards
+the screenshot. A layout that photographs well is not the same as a layout that
+survives forty rows and a long customer name. Use it for the look, check the
+density question somewhere that shows shipped product.
+
+If you cannot reach any of them, say so in one line, then search the web and
+**cite what you found**. A design decision with a reference behind it can be
+argued with. One that came from nowhere cannot, and usually does not survive
+contact with the person who asked for it.
 
 What to take from a reference: the layout decision, the hierarchy, the
 information density, what they chose to leave out. What not to take: their
 colours, their fonts, their brand. You are borrowing structure, not identity.
+
+### Icons
+
+Check <https://reicon.dev/icons> first. It is the fastest way to find the icon
+that means the thing, across the sets, rather than settling for the nearest one
+in the library you already have open.
+
+Then: the project's existing library is what you actually use. In a Grit
+project that is `lucide-react`, and in the admin it is the `iconMap` in
+`lib/icons.ts`, which is not the same as the file's named exports. Adding one
+means adding it to both. **One icon library per project**: a mixed set reads as
+assembled rather than designed, so if reicon points you at something from
+another set, take the shape as a brief and find the nearest thing in the
+library you are already using.
+
+Never an emoji as an icon. See `grit-references/anti-slop-audit.md`.
 
 ## Ask before you build
 

@@ -94,9 +94,9 @@ Example of the shape to aim for:
 grit          3.411.5        ok (project is on 3.411.5)
 gh            authenticated  ok
 agent-browser installed      ok
-dribbble      missing        grit-ui-ux will search the web and cite what it
-                             finds instead of harvesting references. Weaker,
-                             not blocked.
+dribbble      missing        grit-ui-ux still has refero, vibrant, bentogrids
+                             and collectui, which need no install. This one
+                             only harvests in bulk. Barely weaker.
 grill-me      missing        grit-build will not stress-test the plan.
 ```
 
