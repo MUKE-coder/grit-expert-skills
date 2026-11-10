@@ -1,11 +1,12 @@
 # Grit expert skills
 
-Twenty-six Claude skills that build a product on the
+Twenty-seven Claude skills that build a product on the
 [Grit framework](https://gritframework.dev): a router that reads your project
 and assigns the work, one expert per architecture, and specialists for
 resources, the admin panel, design, data, security, performance, deployment
-and review, plus one that reads what the work actually cost in tokens and one
-that writes up what was worth telling people about.
+and review, plus one that reads what the work actually cost in tokens, one
+that writes up what was worth telling people about, and one that turns a
+feature that just shipped into a tutorial somebody new can follow.
 
 Three things make them different from a prompt that describes Grit:
 
@@ -112,6 +113,7 @@ Or call an expert directly when you know who you want:
 | `grit-tokens` | What the project has spent, where it went, and who the big spender is |
 | `grit-advocate` | Files what is worth sharing as a story, with the draft and the channel |
 | `grit-critic` | The independent review of a feature marked done: runs it, profiles it, says what to fix |
+| `grit-teacher` | Turns a shipped feature into a tutorial a beginner can follow, scenario first |
 
 ## How they work together
 
@@ -179,6 +181,26 @@ story.
 
 It never posts. You read the issue, post it or bin it, and close it with the
 link. That loop is how the next batch gets better.
+
+## Teaching it to somebody new
+
+`/grit-teacher` answers a different question again: could a person who has
+never done this follow it. It writes one markdown file per lesson into
+`.grit/tutorials/`, for a reader it names rather than imagines, somebody who
+reads React without effort and has never written Go in anger. So it spends its
+words on the struct tag and the returned error, gives the full path of every
+file it touches, and ends every step with a checkpoint saying what the reader
+will see and what it means if they see something else.
+
+Two things are required rather than encouraged. The scenario comes before step
+one, names a product rather than a category, and says when not to use the
+feature at all, because a technique nobody knows the occasion for is a
+technique nobody uses. And every command in the file was actually run, in
+order, in a project built while writing it: the steps that fail while you
+follow your own tutorial are the ones a reader would have failed at.
+
+It does not publish. A lesson good enough to publish goes to `grit-advocate`
+as an article, so everything that leaves the machine leaves through one place.
 
 It is deliberately not a score. A single number invites gaming, and the
 behaviour that games it (never asking, never filing) is exactly the behaviour

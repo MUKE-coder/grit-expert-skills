@@ -1,7 +1,7 @@
 # The working agreement
 
-Every expert in this pack follows these. They are here once so that seventeen
-skills do not each carry their own copy and then disagree.
+Every expert in this pack follows these. They are here once so that the whole
+pack does not each carry its own copy and then disagree.
 
 ## 1. The project profile comes first
 

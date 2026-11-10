@@ -284,6 +284,16 @@ lost, it will say so in a line. A recording of a failure you are about to fix,
 a screenshot of a broken screen, a timing that will not reproduce once the
 cache is warm. Capture it then or it is gone.
 
+Last, and only when the phase shipped something somebody would have to learn
+to build, run `grit-teacher`. It writes the tutorial into `.grit/tutorials/`
+for a reader who came from JavaScript and has not written Go before. It runs
+after `grit-critic`'s findings are closed, not before: a tutorial for a feature
+that is still being changed is a tutorial written twice.
+
+Most phases do not earn one, and it says so. The test it applies is whether a
+reader could rebuild the thing in a fresh project from the file alone, and
+whether there is a decision in it rather than a single flag.
+
 ## The profile template
 
 ```markdown
