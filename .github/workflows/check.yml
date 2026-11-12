@@ -1,0 +1,45 @@
+name: Check
+
+# The two checkers this pack has were run by hand, which is to say rarely.
+#
+# Both of them exist because something had already drifted silently:
+# check-roster.py because marketplace.json said nineteen skills while the
+# directory held twenty-two, and check-yaml-keys.py because grit-resource
+# documented the relationship key as `target` when Grit reads `related_model`,
+# so a definition written from the skill lost its related model and nothing
+# said so (grit-expert-skills#1).
+#
+# A checker nobody runs is how the next one of those lasts months.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The YAML keys are checked against Grit's own structs, which live in
+      # the other repository. Without this the checker SKIPS, and it says so
+      # loudly rather than passing quietly.
+      - name: Check out Grit, for the struct the keys are checked against
+        uses: actions/checkout@v4
+        with:
+          repository: MUKE-coder/grit
+          path: .grit-checkout
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Every skill is in the roster, and the counts agree
+        run: python3 scripts/check-roster.py
+
+      - name: Every YAML key the skills document is one Grit accepts
+        env:
+          GRIT_REPO: .grit-checkout
+        run: python3 scripts/check-yaml-keys.py

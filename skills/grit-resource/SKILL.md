@@ -61,7 +61,7 @@ name: Invoice
 fields:
   - name: client
     type: belongs_to
-    target: Client
+    related_model: Client
   - name: status
     type: select
     options:
@@ -85,7 +85,56 @@ fields:
       terminal: [paid]
 ```
 
-Two things about the YAML that cost time if you guess them:
+### Every key, because a wrong one is silent
+
+A key the parser does not know is ignored. The definition loads, the generator
+runs, and whatever you meant by that key is simply absent: `target:` instead of
+`related_model:` gives you a `belongs_to` with no model on the other end, and
+nothing says so until the build fails somewhere else.
+
+So guessing is the one thing not to do here. These are the keys, and there are
+no others.
+
+**On a field:**
+
+| Key | Type | What it does |
+|---|---|---|
+| `name` | string | the column, snake_case |
+| `type` | string | one of the field types |
+| `required` | bool | `binding:"required"`, and NOT NULL |
+| `unique` | bool | a unique index on this column alone |
+| `default` | string | the column default |
+| `related_model` | string | the model a `belongs_to`, `has_many`, `many_to_many` or `one_to_one` points at. **Not `target`** |
+| `slug_source` | string | the field a `slug` is derived from |
+| `server_set` | bool | the API writes it, a client may not |
+| `encrypted` | bool | stored through `crypto.EncryptedString` |
+| `show_when` | `{field, value}` | the field applies only when another field holds a value |
+| `file_accepts` | list | extensions a `file` or `files` field takes, e.g. `[pdf, docx]` |
+| `options` | list of `{value, label}` | a `select`'s choices |
+| `workflow` | `{initial, transitions, terminal}` | a state machine over a `select` |
+| `auto` | bool | the value is generated, for a `number` sequence |
+| `auto_prefix` | string | what an auto number is prefixed with, e.g. `INV-` |
+| `default_country` | string | the ISO-2 a `tel` assumes |
+| `max` | int | the ceiling on a `rating` |
+
+**On the resource:**
+
+| Key | Type | What it does |
+|---|---|---|
+| `name` | string | the model, PascalCase |
+| `fields` | list | the fields |
+| `items` | resource | an inline has-many child, generated as a resource of its own |
+| `owned_by` | string | names the belongs_to-User field that says who a row belongs to. Empty means every signed-in caller sees every row |
+| `tenant_owned` | bool | embeds `tenant.Owned`. Needs the multitenant plugin |
+| `confidential` | bool | removes the ADMIN exemption from ownership scoping: an administrator reads nothing. Needs `owned_by`, implies `audit_reads`, refuses `public` |
+| `audit_reads` | bool | records every read in the tamper-evident activity log |
+| `append_only` | bool | rows are immutable once written: create and read routes only, enforced by GORM and a database trigger |
+| `public` | bool | adds a read-only surface outside the auth middleware, guarded by an API key |
+| `tree` | bool | hierarchical: adds `parent_id`, a materialised path and a depth |
+| `unique` | list of strings | the columns a composite unique index covers. It is what makes the importer's `OnConflict{DoNothing}` mean anything |
+| `sync` | `{mode, conflict, ...}` | how the resource behaves offline. `mode` is `offline_first`, `read_only` or `online_only` |
+
+Three that cost time even when you have the key right:
 
 - `options` is a list of `{value, label}` objects, not a list of strings. A
   bare string fails to unmarshal into `FieldOption`.
@@ -94,6 +143,10 @@ Two things about the YAML that cost time if you guess them:
   `nothing can leave paid. Add a transition out, or list paid under terminal`.
   That error is the validator doing its job: a state machine with a dead end
   is a record nobody can ever move on.
+- `sync: {mode: read_only}` is the one to reach for when the server authors the
+  rows: an audit trail, a ledger, a job result. `offline_first` would have the
+  client queue a write that is guaranteed to fail, and `online_only` would stop
+  the person reading their own record offline.
 
 ## Relationships, always explicit
 
