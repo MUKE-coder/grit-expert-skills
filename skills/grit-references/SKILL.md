@@ -21,14 +21,17 @@ user level, or inside a project.
 | `working-agreement.md` | all | The shared contract: the profile, asking, looking facts up, filing issues, verifying |
 | `grit-invariants.md` | all | The parts of Grit that do not change between releases |
 | `token-efficiency.md` | all | Spending context carefully |
+| `craft-standard.md` | `grit-ui-ux` | The ceiling: spacing rhythm, nested radii, optical alignment, the four second test |
 | `anti-slop-audit.md` | `grit-ui-ux` | The design standard, A to K, with a score |
+| `premium-details.md` | `grit-ui-ux` | The finish: button states, which loading pattern, comboboxes, slow networks, layout stability |
 | `motion.md` | `grit-ui-ux` | Web animation, timing, reduced motion |
 | `flat-light-mobile.md` | `grit-mobile` | The complete mobile style, tokens up |
 | `store-rejections.md` | `grit-mobile` | Pre-submission checklist, Apple and Play |
 | `wails-auto-update.md` | `grit-desktop`, `grit-deploy` | Desktop updates through GitHub Releases |
 
-Six of these are distilled from posts at https://jb.desishub.com/blog. When a
-post changes, the reference here needs regenerating: it is a summary, not a
-mirror, and nothing detects the drift.
+Seven of these are distilled from posts at https://jb.desishub.com/blog:
+everything above except `craft-standard.md`, `grit-invariants.md` and
+`working-agreement.md`. When a post changes, the reference here needs
+regenerating: it is a summary, not a mirror, and nothing detects the drift.
 
 If you arrived here looking for instructions, you want `grit-build`.

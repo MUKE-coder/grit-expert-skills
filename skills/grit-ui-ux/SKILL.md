@@ -41,7 +41,7 @@ ordinary is a screen that was half built.
 
 ## What to read
 
-Four references, and which you need depends on what you are doing:
+Five references, and which you need depends on what you are doing:
 
 - `../grit-references/craft-standard.md` is **the ceiling**: what separates an
   interface somebody admires from one they merely use. Spacing rhythm, nested
@@ -50,6 +50,12 @@ Four references, and which you need depends on what you are doing:
 - `../grit-references/anti-slop-audit.md` is **the floor**, for every surface.
   Read it before you write a screen, not after, because almost every finding in
   it is cheaper to avoid than to fix.
+- `../grit-references/premium-details.md` is **the finish**: the dozen
+  components where ordinary and premium actually differ, with the numbers.
+  Button states and the busy state, which loading pattern for which wait,
+  dialogs and arriving rows, inline editing, the searchable dropdown, honesty
+  about a slow network, layout stability. Read it when building any of those,
+  and before saying a surface is done.
 - `../grit-references/motion.md` for web animation.
 - `../grit-references/flat-light-mobile.md` if the surface is the Expo app, where the
   style is already fully specified and your job is to apply it, not to invent.
@@ -173,6 +179,20 @@ boundaries, against the real token values.
 active, disabled, loading, error, success. Error and success are the ones
 always skipped.
 
+**Busy is not disabled.** While a save is in flight, greyed-out reads as "you
+may not", which is a lie. Keep the colour, swap the icon for a spinner, set
+`aria-busy`, and change the label from Save to Saving.
+
+**A dropdown past about eight options is searchable**, and under six does not
+show the search box. A native `<select>` with forty items is a scroll wheel.
+See the combobox section of `premium-details.md`: the WAI-ARIA pattern, the
+portal, and the flip when there is no room below.
+
+**Loading is chosen by the wait.** Under 300ms show nothing, because a spinner
+that flashes is worse than no spinner. A known shape gets a skeleton at the
+real dimensions. An action gets a busy button. When a filter changes, fade the
+previous results to 60% rather than emptying the screen.
+
 **Real elements.** A `button`, not a clickable `div`. A visible focus ring.
 The whole flow operable from the keyboard. 44x44 targets on mobile.
 
@@ -214,8 +234,15 @@ in an admin and slop on a landing page. Classify the surface first.
 
 - Animate `transform` and `opacity`. Never `width`, `height`, `top`, `left`.
 - **Never `transition-all`.** Name the properties.
-- UI feedback under about 300ms. Storytelling can take 600 to 800.
-- One ease, used everywhere: `[0.17, 0.55, 0.55, 1]` is the house curve.
+- UI feedback under about 300ms, and under 200ms for a press. Storytelling
+  can take 600 to 800.
+- **Small as well as fast**: 4 to 8px of movement, 0.97 to 1 of scale. A
+  bigger move reads as slower at the same duration.
+- One ease, used everywhere: `[0.17, 0.55, 0.55, 1]` is the house curve,
+  written `cubic-bezier(0.17, 0.55, 0.55, 1)` in CSS.
+- **Name the question the animation answers**: did my click land, where did
+  this come from, is work happening, what changed. If you cannot name it,
+  delete it.
 - Motion must be motivated: hierarchy, feedback, a state change. Not because
   the library is installed.
 - **`useReducedMotion()` in the component.** The CSS media query does not
@@ -268,4 +295,9 @@ a guess, and a stale dev-server bundle will show you the old design and let
 you believe it shipped.
 
 Then: tab through it, check the focus ring is visible on every stop, and turn
-on reduced motion and confirm the page still makes sense.
+on reduced motion and confirm the page still makes sense. Reduced motion means
+the JS animations too, not only the CSS: the media query does not reach a
+library, and that is the accessibility failure shipped most confidently.
+
+Then run the checklist at the end of `premium-details.md`. It is thirteen
+lines and it is where the difference between working and finished is.
