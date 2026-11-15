@@ -27,7 +27,7 @@ grit skills install --all
 ```
 
 An ordinary command, so an assistant can run it for you. It installs every
-skill at user level, so all your projects see them, plus the five external
+skill at user level, so all your projects see them, plus the six external
 skills the experts use. `grit skills status` says what is there. Needs Grit
 v3.411.7 or later.
 
@@ -60,7 +60,7 @@ Then, in your project:
 /grit-setup
 ```
 
-That checks the `grit` binary, the GitHub CLI and the five external skills the
+That checks the `grit` binary, the GitHub CLI and the six external skills the
 experts use, and tells you which experts are degraded by anything missing. The
 pack works without them; it works better with them.
 
@@ -241,6 +241,7 @@ npx skills add https://github.com/mattpocock/skills --skill grill-me
 npx skills add https://github.com/vercel-labs/agent-browser --skill agent-browser
 npx skills add https://github.com/ihlamury/design-skills --skill dribbble-ui-skills
 npx skills add https://github.com/lakr233/dribblecli --skill dribbble-reference-harvester
+npx skills add https://github.com/benjitaylor/skills --skill stageshow
 ```
 
 ## The one thing to know about filing issues

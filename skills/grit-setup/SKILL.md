@@ -53,7 +53,7 @@ that stays on one machine. See `../grit-references/git-workflow.md`.
 
 ## 3. The external skills
 
-Install all five. They are separate projects with their own licences and
+Install all six. They are separate projects with their own licences and
 updates, so the pack points at them rather than vendoring them.
 
 ```bash
@@ -69,6 +69,9 @@ npx skills add https://github.com/vercel-labs/agent-browser --skill agent-browse
 # Design research, so a screen is informed by current work rather than memory
 npx skills add https://github.com/ihlamury/design-skills --skill dribbble-ui-skills
 npx skills add https://github.com/lakr233/dribblecli --skill dribbble-reference-harvester
+
+# The picture of the product on a marketing page, built rather than faked
+npx skills add https://github.com/benjitaylor/skills --skill stageshow
 ```
 
 Who wants which:
@@ -77,9 +80,15 @@ Who wants which:
 |---|---|---|
 | `dribbble-ui-skills` | `grit-ui-ux` | Researching a pattern before designing it |
 | `dribbble-reference-harvester` | `grit-ui-ux` | Collecting references to work from |
+| `stageshow` | `grit-ui-ux` | Heroes, feature cards and product demos: faux UI built to a standard instead of grey rectangles |
 | `agent-browser` | `grit-ui-ux`, `grit-reviewer`, `grit-perf` | Standing the app up and looking at it |
 | `grill-me` | `grit-build`, `grit-core` | Attacking a plan before it becomes code |
 | `find-skills` | any | When the task is outside this pack |
+
+`stageshow` is the largest of the six: a React kit, examples and filming
+scripts, not only instructions. It carries third-party artwork under its own
+licences, recorded in its `NOTICE.md`, which is worth reading once before
+anything built with it ships.
 
 ## 4. Report what is there
 
@@ -97,6 +106,10 @@ agent-browser installed      ok
 dribbble      missing        grit-ui-ux still has refero, vibrant, bentogrids
                              and collectui, which need no install. This one
                              only harvests in bulk. Barely weaker.
+stageshow     missing        grit-ui-ux will use a real screenshot for a hero
+                             instead of building one, which is the better
+                             answer anyway once the product exists. Only
+                             matters before launch.
 grill-me      missing        grit-build will not stress-test the plan.
 ```
 

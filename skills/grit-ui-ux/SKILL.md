@@ -2,10 +2,11 @@
 name: grit-ui-ux
 description: >-
   Design the customer-facing surfaces: research a pattern before building it,
-  hold the result to the anti-slop standard, and get motion and accessibility
-  right. Use for "design this page", "make it look better", "it looks
-  generic", "design review", "add animation", "a landing page", or any screen
-  a customer sees.
+  hold the result to the anti-slop standard, get motion and accessibility
+  right, and build the picture of the product a marketing page needs. Use for
+  "design this page", "make it look better", "it looks generic", "design
+  review", "add animation", "a landing page", "a hero image or product shot",
+  "a demo of the app", or any screen a customer sees.
 ---
 
 # grit-ui-ux
@@ -68,6 +69,7 @@ Do not reinvent what is installed. Check with `/skills` or look in
 | Skill | Use it for |
 |---|---|
 | `ui-ux-pro-max` | Styles, palettes, font pairings, product patterns, motion presets. The searchable database: reach for it when choosing a direction |
+| `stageshow` | The picture of the product on a marketing page: faux browser and app windows, phones, dashboards, cursor walkthroughs, framed and cropped the way a hero or a feature card needs. See Product shots and demos |
 | `dribbble-ui-skills` and `dribbble-reference-harvester` | Collecting references in bulk. One source among several: see Research before you design |
 | `frontend-design` | Aesthetic direction when the work is to decide how something should feel |
 | `web-design-guidelines` | Reviewing built UI against the interface guidelines |
@@ -132,6 +134,31 @@ contact with the person who asked for it.
 What to take from a reference: the layout decision, the hierarchy, the
 information density, what they chose to leave out. What not to take: their
 colours, their fonts, their brand. You are borrowing structure, not identity.
+
+### Two to study rather than browse
+
+Not galleries. Two single references for what the bar actually looks like,
+worth an hour each before a first customer-facing surface.
+
+<https://family.co/> is the clearest well known example of the standard the top
+of this skill argues for, applied to a domain nobody finds friendly: a
+self-custody Ethereum wallet. What to take is not components, because it is a
+native iOS app. It is the approach. Raw chain events are rewritten as
+plain-language activity, so the screen answers what happened rather than
+printing what the network said. Motion exists to report a state change, so a
+transaction's progress is read from how it moves rather than from a status
+string. The stated philosophy is that they sweat the details no matter how
+small, and the product is the argument for it. Most Grit projects have the same
+shape of problem: somebody looking at a domain they did not choose to learn.
+
+Read it knowing it is the company's own marketing site, so it describes its
+craft at least as much as it demonstrates it. The app is the reference. The
+page is the pitch.
+
+<https://benji.org/stageshow> is the reasoning behind the `stageshow` skill:
+the five ways a faux product shot fails, and why each one happens. Read it when
+you need to judge somebody else's product shot or argue about your own, rather
+than build one.
 
 ### Icons
 
@@ -227,6 +254,58 @@ single section.
 
 A product surface is judged differently: a dense repetitive table is correct
 in an admin and slop on a landing page. Classify the surface first.
+
+## Product shots and demos
+
+Every marketing page needs a picture of the product, and the standard above
+bans the version everybody reaches for: a div with grey rectangles in it,
+presented as the app. That ban stands. This is what to do instead.
+
+Three honest options, strongest first.
+
+**A real screenshot of the real app.** A Grit project has a working admin and a
+working web app from the first day, so this is usually available, and it is
+always the most convincing thing on the page. Seed plausible data, drive
+`agent-browser` to the screen, capture at 2x. It costs nothing, it cannot be
+accused of anything, and it improves every time the product does.
+
+**A Stageshow illustration**, when a real screenshot will not do the job:
+before launch, when the only real data is confidential, when the real screen is
+too dense to read at hero size, or when the story is a flow and needs motion to
+tell it. The `stageshow` skill builds these. Its one idea is worth knowing
+before you decide, because it tells you whether you need it: *it reads as a
+real product, simplified to what the viewer needs, framed with intent, and
+every motion has a cause.* Read its own `SKILL.md` and the `references/` files
+it names rather than anything restated here, start from its closest gold
+example rather than from scratch, and do not hand over until its `--gate`
+reports `rehearsal passed`.
+
+**Nothing.** A type-led hero with no product shot beats a bad one, and beats an
+invented one by a wider margin. It is also the right answer while the screen it
+would show is still being designed.
+
+### What is yours to decide, not Stageshow's
+
+- **It wears the project's identity, never Grit's and never a competitor's.**
+  Its own name, its own tokens, its own words, the same rule the scaffolded app
+  itself follows. Borrowing a known product's chrome to look established is the
+  marketing version of faking a logo.
+- **An invented number in a faux UI is still an invented number.** A revenue
+  figure or a conversion rate on a mocked dashboard is a claim the business has
+  to stand behind, and the surrounding pixels being illustrative does not make
+  the figure illustrative. Use values that are obviously examples, or get the
+  real ones.
+- **Never caption an illustration as a screenshot.** Preview and concept are
+  fine. Alt text describes what the interface shows, not "screenshot of the
+  dashboard".
+- **One demo, not a gallery.** Four animated mocks on a page leave it with no
+  focal point, and each one halves the credibility of the others.
+
+If `stageshow` is not installed, say so in one line and fall back to the real
+screenshot. Do not hand-build the faux window instead: uneven insets, squeezed
+labels and chrome belonging to no operating system are precisely what that
+skill exists to prevent, and a hand-rolled one is the fake screenshot the
+standard already rejects.
 
 ## Motion
 
