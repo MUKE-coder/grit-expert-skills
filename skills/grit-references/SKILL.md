@@ -21,7 +21,10 @@ user level, or inside a project.
 | `working-agreement.md` | all | The shared contract: the profile, asking, looking facts up, filing issues, verifying |
 | `grit-invariants.md` | all | The parts of Grit that do not change between releases |
 | `token-efficiency.md` | all | Spending context carefully |
+| `git-workflow.md` | all | Committing and pushing every finished piece of work, from the first command |
 | `craft-standard.md` | `grit-ui-ux` | The ceiling: spacing rhythm, nested radii, optical alignment, the four second test |
+| `landing-page.md` | `grit-ui-ux` | The marketing page: sections ordered by the visitor's questions, the foundation, the nav, the motion system |
+| `product-demos.md` | `grit-ui-ux` | Multi-step demos: beats, cause before effect, framing, the word budget, the loop |
 | `anti-slop-audit.md` | `grit-ui-ux` | The design standard, A to K, with a score |
 | `premium-details.md` | `grit-ui-ux` | The finish: button states, which loading pattern, comboboxes, slow networks, layout stability |
 | `motion.md` | `grit-ui-ux` | Web animation, timing, reduced motion |
@@ -29,9 +32,15 @@ user level, or inside a project.
 | `store-rejections.md` | `grit-mobile` | Pre-submission checklist, Apple and Play |
 | `wails-auto-update.md` | `grit-desktop`, `grit-deploy` | Desktop updates through GitHub Releases |
 
-Seven of these are distilled from posts at https://jb.desishub.com/blog:
-everything above except `craft-standard.md`, `grit-invariants.md` and
-`working-agreement.md`. When a post changes, the reference here needs
-regenerating: it is a summary, not a mirror, and nothing detects the drift.
+Nine of these are distilled from posts at https://jb.desishub.com/blog:
+everything above except `craft-standard.md`, `git-workflow.md`,
+`grit-invariants.md` and `working-agreement.md`. When a post changes, the
+reference here needs regenerating: it is a summary, not a mirror, and
+nothing detects the drift.
+
+`product-demos.md` is deliberately the judgement and not the kit. The
+`stageshow` skill owns the components, the gold examples and the filming
+script, and is pointed at rather than summarised, because a second copy of
+an API goes stale and a second copy of a judgement does not.
 
 If you arrived here looking for instructions, you want `grit-build`.

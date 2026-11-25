@@ -42,7 +42,7 @@ ordinary is a screen that was half built.
 
 ## What to read
 
-Five references, and which you need depends on what you are doing:
+Seven references, and which you need depends on what you are doing:
 
 - `../grit-references/craft-standard.md` is **the ceiling**: what separates an
   interface somebody admires from one they merely use. Spacing rhythm, nested
@@ -57,6 +57,16 @@ Five references, and which you need depends on what you are doing:
   dialogs and arriving rows, inline editing, the searchable dropdown, honesty
   about a slow network, layout stability. Read it when building any of those,
   and before saying a surface is done.
+- `../grit-references/landing-page.md` is **the marketing page**: the
+  sections in the order a visitor asks for them, the token and theme
+  foundation, the navigation, the scroll-reveal rules, and the checks.
+  Read it before building or reviewing any landing page, because the thing
+  it fixes is the order of the argument, which is expensive to change once
+  the sections exist.
+- `../grit-references/product-demos.md` is **the animated demo**: beats,
+  cause before effect, framing, the real-words budget, the loop reset and
+  the recurring faults. It is the judgement; `stageshow` is the kit. Read
+  both before building one.
 - `../grit-references/motion.md` for web animation.
 - `../grit-references/flat-light-mobile.md` if the surface is the Expo app, where the
   style is already fully specified and your job is to apply it, not to invent.
@@ -240,6 +250,54 @@ ask.
 **No em dashes in rendered copy.** Anywhere: headlines, buttons, body,
 captions, alt text.
 
+## Landing pages
+
+A landing page is not a list of features with a hero on top. It is the
+questions a stranger asks, in the order they ask them, each answered once.
+`../grit-references/landing-page.md` has the whole method; this is what to
+hold in your head while building one.
+
+**Order the sections by the question, not by the feature list.**
+
+| Section | The question |
+|---|---|
+| Hero | What is it |
+| Audience | Who is it for |
+| Principles | Why this instead of the five apps I already have |
+| Walkthrough | Show me it working, end to end |
+| One per module | What is actually in it |
+| Trust | Can I trust it with my data |
+| Pricing | What does it cost |
+| Who built it | Who am I buying from |
+| Close | Start |
+
+A section that does not answer a question somebody is asking at that point in
+the scroll is decoration, and it costs you the rest of the page.
+
+**Three decisions that are expensive to reverse**, so make them first:
+
+1. **Write the style guide before the first section.** Colours, type, spacing,
+   one easing curve. Without it the fourth section invents its own spacing and
+   the page stops feeling like one product.
+2. **Decide what you are allowed to claim.** No counts, ratings, logos or
+   testimonials you cannot back, and no capability the product does not have
+   yet. When there are no customers to name, an audience strip ("built for
+   service businesses", six honest categories) answers "is this for me" better
+   than invented logos ever did.
+3. **Price in one place.** The hero line, the pricing card and any comparison
+   page read from one file, or they will disagree and somebody will notice.
+
+**The few that are cheap to get right and always wrong otherwise:** sign in
+stays visible on phones rather than hiding in the hamburger; no empty footer
+links; one eyebrow per section rather than one per block; section titles say
+what the visitor gets rather than a slogan; dark mode gets its own lighter
+accent, because the light one on near-black stops reading as the primary
+action.
+
+**Check it at 1440 and 375, in light and dark, by keyboard, with reduced
+motion on.** At 375 the page must not scroll sideways. A landing page reviewed
+only at desktop width in one theme is a landing page half reviewed.
+
 ## The tells, on marketing surfaces
 
 Hard-flag these, because together they are the fingerprint of a page nobody
@@ -283,6 +341,31 @@ reports `rehearsal passed`.
 **Nothing.** A type-led hero with no product shot beats a bad one, and beats an
 invented one by a wider margin. It is also the right answer while the screen it
 would show is still being designed.
+
+### Building a multi-step demo
+
+When the answer is a Stageshow demo, `../grit-references/product-demos.md` is
+the judgement and `stageshow` is the kit. Read both. The four that decide
+whether it reads as a product or as a cartoon:
+
+1. **Write the beats in prose first.** Three to five beats, one payoff, ten to
+   sixteen seconds. If the story does not fit in six lines of plain prose,
+   there is no story yet and no animation will supply one.
+2. **Every change needs a cause.** A status that updates by itself is the
+   clearest tell of a fake. Show the cause, then the effect. The exception
+   proves it: the one event nobody chooses, a connection dropping, gets no
+   cursor, and that is how you show something happening *to* the viewer.
+3. **Real words are a budget, not a target.** Three to seven real strings; the
+   rest is grey structure, and never grey where the eye lands. The more
+   plausible filler a demo contains, the more it looks generated.
+4. **Frame before you animate.** Film a still first. The page is the ground, so
+   bleed past an edge rather than floating the window with air on four sides,
+   and crop rather than shrink. Almost-right framing hides every motion fault
+   underneath it.
+
+And one that is always left too late: **plan the loop reset when you add the
+fourth beat.** Returning to the start without visibly undoing finished work is
+the hardest part of the job.
 
 ### What is yours to decide, not Stageshow's
 
