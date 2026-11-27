@@ -1,6 +1,6 @@
 # Grit expert skills
 
-Twenty-seven Claude skills that build a product on the
+Twenty-eight Claude skills that build a product on the
 [Grit framework](https://gritframework.dev): a router that reads your project
 and assigns the work, one expert per architecture, and specialists for
 resources, the admin panel, design, data, security, performance, deployment
@@ -111,6 +111,7 @@ Or call an expert directly when you know who you want:
 | `grit-setup` | Installs and checks what the others depend on |
 | `grit-report` | Reads the run log and says whether the experts are paying for themselves |
 | `grit-tokens` | What the project has spent, where it went, and who the big spender is |
+| `grit-spend` | The spend dashboard: one HTML page, by task, by expert, by tool |
 | `grit-advocate` | Files what is worth sharing as a story, with the draft and the channel |
 | `grit-critic` | The independent review of a feature marked done: runs it, profiles it, says what to fix |
 | `grit-teacher` | Turns a shipped feature into a tutorial a beginner can follow, scenario first |
@@ -161,6 +162,21 @@ python3 .claude/skills/grit-tokens/scripts/token_report.py --project . \
 Run it once before setting any alert: the defaults it ships with are small
 enough to fire immediately on a real project, and the report tells you what
 your actual numbers are so you can set thresholds that mean something.
+
+`/grit-spend` turns the same record into the page you open later:
+`.grit/spend.html`, with the headline figures, a column per day, and three
+tables saying where it went. One of them answers the question the per-tool
+table cannot, which is **which piece of work** cost the money:
+
+```bash
+python3 .claude/skills/grit-spend/scripts/spend_dashboard.py --project .
+```
+
+A task there is one request and everything done to answer it, and an expert is
+whichever skill or subagent was running at the time, both read from the
+transcript. Only `grit-tokens` reads transcripts; `grit-spend` draws what it
+recorded, so the two cannot report different totals. The money column is list
+price, which on a subscription plan is not a bill.
 
 ## Telling people about it
 
