@@ -86,6 +86,13 @@ rep's own tasks belong to a user. What is not normal is deciding per resource
 as you go, with no rule, which is how two resources that should agree end up
 disagreeing.
 
+Since v3.584.0 this answer decides a second thing. In a project created with
+`grit new --saas`, an owned resource gets a customer screen in
+`apps/web/app/(app)` as well as an admin one; a shared resource does not,
+because a customer list of a shared table would be everybody's rows. So
+"whose row is it" now settles both who may read it and whether there is a
+screen for them to read it on. See `grit-resource` for the three levels.
+
 ### 3. Relationships, explicitly
 
 Always the explicit form, with the target named:
@@ -133,6 +140,9 @@ A float for money is a rounding bug with a delay on it.
 | Who may do this | `internal/policies/` |
 | Something every request passes through | `internal/middleware/` |
 | A shape the frontend also needs | `packages/shared/` via `grit sync` |
+| A screen an OPERATOR uses | `apps/admin/`, generated from the resource definition |
+| A screen a CUSTOMER uses | `apps/web/app/(app)/`, generated or yours |
+| A marketing page | `apps/web/app/(marketing)/` |
 
 The one that gets broken most: **logic in a handler**. It feels fine until a
 background job, a CLI command or a second handler needs the same rule, which

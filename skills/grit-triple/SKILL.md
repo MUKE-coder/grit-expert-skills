@@ -69,9 +69,13 @@ with errors that point at the component, not at the duplication.
    into another app.
 3. **The admin**: generated, including the resource definition and a page. See
    `grit-admin` for the screens worth having beyond the default.
-4. **The web app**: this is the one with real work in it, because what a
-   customer sees is a product decision and not a CRUD table. Hand it to
-   `grit-ui-ux` with the hooks and types already in place.
+4. **The web app**: hooks and types, always. In a project created with
+   `grit new --saas`, an owned resource ALSO gets a list, a create and a
+   detail page in `apps/web/app/(app)` and an entry in the customer sidebar.
+   That is a starting point and not the answer: what a customer sees is a
+   product decision, so hand it to `grit-ui-ux`. For the product's own
+   surface, ask for `--portal headless` instead and get the descriptor and
+   the hooks with no JSX to delete first.
 
 Run the whole thing after:
 

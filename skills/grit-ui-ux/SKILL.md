@@ -412,6 +412,29 @@ standard already rejects.
   ship most confidently.
 - Never a scroll event listener for scroll-driven animation.
 
+## The customer area is generated before you touch it
+
+Since v3.584.0, a SaaS project's signed-in area already has screens in it:
+`apps/web/app/(app)` with the account pages, the organisation screen, the
+billing screen, and a generated list, create and detail page per owned
+resource. That changes where your work starts.
+
+**What that means for a design pass:**
+
+- **Start from what is there.** Generated pages use the web app's own tokens
+  (`bg-bg-secondary`, `text-text-secondary`, `text-accent`), not the admin's.
+  An admin utility pasted into a customer page renders as nothing at all,
+  silently.
+- **The pages are yours the moment they are written.** Nothing overwrites
+  them, so redesign in place rather than beside.
+- **For the product's own surface, ask for `--portal headless` instead.** It
+  gives the data layer and the resource descriptor and no JSX, which is the
+  right starting point for a note grid, a board or a calendar. A generated
+  list you have to delete first is worse than none.
+- **Do not redesign the furniture first.** Billing, members and invitations
+  are the same in every SaaS and nobody is paying for yours to look
+  different. The product surface is where the design work earns its keep.
+
 ## Do not fight the framework
 
 The web app has its own palette tokens (`bg-bg-secondary`,

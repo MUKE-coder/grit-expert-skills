@@ -200,7 +200,52 @@ what you get, and the questions each one answers:
 | `--items "Child:field:type,..."` | An inline has-many rendered as a line-items table in this resource's form |
 | `--append-only` | Rows are created and read, never changed or deleted. For ledgers, audit trails, consent |
 | `--audit-reads` | Record every read in the tamper-evident activity log. For health records |
+| `--portal screens\|headless\|off` | How much of the CUSTOMER-facing half to write. See below |
 | `--force` | Generate even when the name collides with a built-in |
+
+### The customer's half, since v3.584.0
+
+A generated resource has two halves, not one. The admin screen is the
+operator's and has always been written. In a project created with
+`grit new --saas`, a resource with `--owned-by` or `--tenant-owned` also gets
+the customer's:
+
+```
+apps/web/app/(app)/notes/page.tsx        their list
+apps/web/app/(app)/notes/new/page.tsx    create
+apps/web/app/(app)/notes/[id]/page.tsx   edit and delete
+apps/web/components/portal/note-form.tsx the form
+apps/web/lib/portal/notes.ts             the resource as data
+apps/web/app/(app)/layout.tsx            an entry in the customer sidebar
+```
+
+Three levels, and **choosing the right one is the decision that matters**:
+
+| Level | Write it when |
+|---|---|
+| `screens` (default in a SaaS) | The screen is list-shaped and nobody will redesign it: invoices, documents, team members, API keys |
+| `headless` | This is the product's own surface. You get `lib/portal/<resource>.ts` and the hooks, and no JSX to delete first |
+| `off` | The hook alone, which is what every project got before v3.584.0 |
+
+The rule of thumb: **the furniture is the same in every SaaS and the product
+is not.** Somebody building a note-taking app wants generated billing, team
+and account screens and wants to write the note grid themselves. That is
+`--portal headless` on `Note` and nothing special anywhere else.
+
+The descriptor is what makes headless worth having rather than just absent:
+it carries the fields, their kinds, the options of a choice column, the
+display and subtitle columns and `scope: "user" | "organization"`. Build the
+screen against it and a column added to the Go model turns up without an
+edit. Hard-code the fields in the component and it will not.
+
+Two things it is not. It is **not a permission check**: the API scopes every
+read and write by the owner on the session, and a filter in a page is a check
+an API client walks past. And it does **not** include the owner column, so a
+customer cannot hand their row to somebody else.
+
+Generated pages are written once and never overwritten. Regenerate to add a
+field and the field reaches the form through the descriptor while your layout
+and your copy stay as you left them.
 
 Two notes worth having in advance:
 
